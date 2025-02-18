@@ -52,7 +52,7 @@ export default function SetAvatar() {
   const fetchAvatars = async () => {
     try {
       const data = [];
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 4; i++) { 
         const randomSeed = Math.random().toString(36).substring(7); // Random unique seed
         const avatarUrl = `https://api.dicebear.com/7.x/adventurer/svg?seed=${randomSeed}`; // Using DiceBear Adventurer avatars
         data.push(avatarUrl);
