@@ -32,7 +32,7 @@ export default function Register() {
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
   };
-
+ 
   const handleValidation = () => {
     const { password, confirmPassword, username, email } = values;
     if (password !== confirmPassword) {

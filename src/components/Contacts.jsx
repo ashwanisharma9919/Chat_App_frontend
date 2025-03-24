@@ -8,6 +8,7 @@ export default function Contacts({ contacts, changeChat }) {
   const [currentSelected, setCurrentSelected] = useState(undefined);
 
   useEffect(() => {
+<<<<<<< HEAD
     const fetchUserData = () => {
       const storedData = localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY);
 
@@ -28,6 +29,13 @@ export default function Contacts({ contacts, changeChat }) {
     };
 
     fetchUserData();
+=======
+    const data = JSON.parse(
+      localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+    );
+    setCurrentUserName(data.username);
+    setCurrentUserImage(data.avatarImage);
+>>>>>>> e241bd1524a892c9e7b2c757742ab59c3782879d
   }, []);
 
   const changeCurrentChat = (index, contact) => {
@@ -37,13 +45,18 @@ export default function Contacts({ contacts, changeChat }) {
 
   return (
     <>
+<<<<<<< HEAD
       {currentUserImage !== undefined && (
+=======
+      {currentUserImage && (
+>>>>>>> e241bd1524a892c9e7b2c757742ab59c3782879d
         <Container>
           <div className="brand">
             <img src={Logo} alt="logo" />
             <h3>snappy</h3>
           </div>
           <div className="contacts">
+<<<<<<< HEAD
             {contacts.map((contact, index) => (
               <div
                 key={contact._id}
@@ -59,6 +72,29 @@ export default function Contacts({ contacts, changeChat }) {
                     }
                     alt="avatar"
                   />
+=======
+            {contacts.map((contact, index) => {
+              return (
+                <div
+                  key={contact._id}
+                  className={`contact ${index === currentSelected ? "selected" : ""
+                    }`}
+                  onClick={() => changeCurrentChat(index, contact)}
+                >
+                  <div className="avatar">
+                    <img
+                      src={
+                        contact.avatarImage.startsWith("http")
+                          ? contact.avatarImage
+                          : `data:image/svg+xml;base64,${contact.avatarImage}`
+                      }
+                      alt=""
+                    />
+                  </div>
+                  <div className="username">
+                    <h3>{contact.username}</h3>
+                  </div>
+>>>>>>> e241bd1524a892c9e7b2c757742ab59c3782879d
                 </div>
                 <div className="username">
                   <h3>{contact.username}</h3>
@@ -67,6 +103,7 @@ export default function Contacts({ contacts, changeChat }) {
             ))}
           </div>
           <div className="current-user">
+<<<<<<< HEAD
             {currentUserImage && (
               <>
                 <div className="avatar">
@@ -84,6 +121,21 @@ export default function Contacts({ contacts, changeChat }) {
                 </div>
               </>
             )}
+=======
+            <div className="avatar">
+              <img
+                src={
+                  currentUserImage.startsWith("http")
+                    ? currentUserImage
+                    : `data:image/svg+xml;base64,${currentUserImage}`
+                }
+                alt="avatar"
+              />
+            </div>
+            <div className="username">
+              <h2>{currentUserName}</h2>
+            </div>
+>>>>>>> e241bd1524a892c9e7b2c757742ab59c3782879d
           </div>
         </Container>
       )}
