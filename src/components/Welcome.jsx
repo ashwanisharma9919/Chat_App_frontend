@@ -15,8 +15,8 @@ export default function Welcome() {
         } catch (error) {
           console.error("Error parsing user data:", error);
           setUserName("Guest");
-        }
-      } else {
+        } 
+      } else { 
         setUserName("Guest");
       }
     };
