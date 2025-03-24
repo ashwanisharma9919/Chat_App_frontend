@@ -1,22 +1,36 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Robot from "../assets/robot.gif";
+
 export default function Welcome() {
   const [userName, setUserName] = useState("");
-  useEffect(async () => {
-    setUserName(
-      await JSON.parse(
-        localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
-      ).username
-    );
+
+  useEffect(() => {
+    const fetchUserName = async () => {
+      const storedUser = localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY);
+      if (storedUser) {
+        try {
+          const user = JSON.parse(storedUser);
+          setUserName(user?.username || "Guest");
+        } catch (error) {
+          console.error("Error parsing user data:", error);
+          setUserName("Guest");
+        }
+      } else {
+        setUserName("Guest");
+      }
+    };
+
+    fetchUserName();
   }, []);
+
   return (
     <Container>
-      <img src={Robot} alt="" />
+      <img src={Robot} alt="Welcome Robot" />
       <h1>
         Welcome, <span>{userName}!</span>
       </h1>
-      <h3>Please select a chat to Start messaging.</h3>
+      <h3>Please select a chat to start messaging.</h3>
     </Container>
   );
 }
